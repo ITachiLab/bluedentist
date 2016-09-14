@@ -6,7 +6,10 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 	try {
 		lenovoApi = new LenovoApi();
 
+		HICON hIcon = LoadIconA(hInstance, MAKEINTRESOURCEA(IDI_ICON1));
 		HWND hWnd = CreateDialog(hInstance, MAKEINTRESOURCE(IDD_DIALOG1), NULL, (DLGPROC)MyDialog);
+
+		SendMessage(hWnd, WM_SETICON, ICON_SMALL, (LPARAM)hIcon);
 
 		ShowWindow(hWnd, nCmdShow);
 		UpdateWindow(hWnd);
@@ -17,10 +20,12 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 			DispatchMessage(&msg);
 		}
 
-		return (int)msg.wParam;
+		return (int) msg.wParam;
 	} catch (const char* exception) {
 		MessageBoxA(NULL, exception, "Error", MB_OK + MB_ICONERROR);
 	}
+
+	return 0;
 }
 
 BOOL CALLBACK MyDialog(HWND hDlg, UINT message, WPARAM wParam, LPARAM lParam) {

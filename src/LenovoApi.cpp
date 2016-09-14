@@ -11,7 +11,7 @@ LenovoApi::LenovoApi() {
 		RegQueryValueExA(key, "InstallDir", NULL, NULL, (LPBYTE)libraryDir, &bufferSize);
 		RegCloseKey(key);
 
-		strcpy_s(libraryDir + bufferSize - 1, 24, "\LenovoEmExpandedAPI.dll");
+		strcpy_s(libraryDir + bufferSize - 1, 24, "LenovoEmExpandedAPI.dll");
 
 		this->apiLibrary = LoadLibraryA(libraryDir);
 
